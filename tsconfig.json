@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "declaration": true,
+    "noImplicitAny": true
+  },
+  "exclude": [
+      "node_modules",
+      "typings/browser.d.ts",
+      "typings/browser"
+    ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./example/**/*.ts",
+    "!./node_modules/**/*.ts",
+    "typings/main.d.ts",
+    "typings/main",
+    "./http.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
+}
