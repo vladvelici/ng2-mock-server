@@ -14,7 +14,7 @@ Getting started
 
 In your `bootstrap.ts` or `main.ts` file:
 
-    import {Http} from 'angular2/http';
+    import {Http} from '@angular/http';
     import {MOCK_SERVER_PROVIDERS, MockSrvRouter} from 'ng2-mock-server/http';
 
     // This is where you implement the mock back-end logic:
@@ -44,6 +44,30 @@ In `./src/setupMockRouter.ts`:
         // Important, tell the router you're done setting up routes.
         r.ready();
     }
+
+Development and running the example project
+-------------------------------------------
+
+For development and running the example project, clone this repo, make the desired changes and:
+
+    # 1. link the module:
+    npm link ng2-mock-server
+
+    # 2. run the example with
+    npm start
+
+
+Changelog
+---------
+
+#### 0.0.2
+
+- Updated code to Angular2 RC 1.
+- Thanks @sgbeal for the code!
+
+#### 0.0.1
+
+Initial release.
 
 Contributions
 -------------

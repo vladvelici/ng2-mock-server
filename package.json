@@ -1,6 +1,6 @@
 {
   "name": "ng2-mock-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mock HTTP backend that runs in the browser to develop front-ends without back-ends.",
   "main": "http",
   "scripts": {
