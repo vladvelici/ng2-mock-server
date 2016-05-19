@@ -1,5 +1,5 @@
-import {provide} from 'angular2/core';
-import {XHRBackend} from 'angular2/http';
+import {provide} from '@angular/core';
+import {XHRBackend} from '@angular/http';
 
 import {MockSrvRouter} from './src/router.service';
 import {MockSrvBackend} from './src/mocksrv.service';
