@@ -1,5 +1,5 @@
 import {MockSrvRouter, json} from 'ng2-mock-server/http';
-import {ResponseOptions} from 'angular2/http';
+import {ResponseOptions} from '@angular/http';
 
 var posts = [
     {url: "hello", title: "Hello", content: "hello world, this is post hello!"},

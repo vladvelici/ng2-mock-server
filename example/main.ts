@@ -1,7 +1,7 @@
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
-import {Component, Injectable, provide} from 'angular2/core';
+import {HTTP_PROVIDERS, Http} from '@angular/http';
+import {Component, Injectable, provide} from '@angular/core';
 import {MOCK_SERVER_PROVIDERS, MockSrvRouter} from 'ng2-mock-server/http';
-import {bootstrap} from 'angular2/platform/browser';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 
 // This is where you implement the mock back-end logic:
 import {setupMockRouter} from './setupMockRouter';
@@ -13,7 +13,7 @@ import {PostsService, Post} from './posts.service';
         <div> STATUS: {{ status }} </div>
 
         <ul>
-            <li *ngFor="#post of posts"><a (click)="select(post.url)" href="#">{{ post.title }}</a></li>
+            <li *ngFor="let post of posts"><a (click)="select(post.url)" href="#">{{ post.title }}</a></li>
         </ul>
 
         <a (click)="select('this-post-does-not-exist')" href="#">404 example</a>
