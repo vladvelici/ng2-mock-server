@@ -1,5 +1,5 @@
-import {ReadyState, ResponseOptions, Request, Headers, RequestMethod} from 'angular2/http';
-import {Injectable, Inject} from 'angular2/core';
+import {ReadyState, ResponseOptions, Request, Headers, RequestMethod} from '@angular/http';
+import {Injectable, Inject} from '@angular/core';
 import {pathtoRegexp} from './path-to-regexp';
 
 export type RouteCallback = (req : Request, ...params : string[]) => Promise<ResponseOptions>;

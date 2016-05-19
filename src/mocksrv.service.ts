@@ -1,7 +1,7 @@
-import {Connection, ConnectionBackend} from 'angular2/src/http/interfaces';
-import {ReadyState, ResponseOptions, Request, Response} from 'angular2/http';
+import {Connection, ConnectionBackend} from '@angular/http/src/interfaces';
+import {ReadyState, ResponseOptions, Request, Response} from '@angular/http';
 import {Observable, Observer, ReplaySubject} from 'rxjs/Rx';
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {MockSrvRouter} from './router.service';
 
 export class MockSrvConnection implements Connection {

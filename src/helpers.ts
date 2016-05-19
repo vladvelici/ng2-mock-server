@@ -1,5 +1,5 @@
 import {MockSrvRouter, RouteCallback} from './router.service';
-import {ReadyState, ResponseOptions, Request, Headers, RequestMethod} from 'angular2/http';
+import {ReadyState, ResponseOptions, Request, Headers, RequestMethod} from '@angular/http';
 
 /**
  * Helper function to easily respond with JSON and a given status code. Adds `Content-Type: application/json` header.
