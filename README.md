@@ -63,7 +63,7 @@ Changelog
 #### 0.0.2
 
 - Updated code to Angular2 RC 1.
-- Thanks @sgbeal for the code!
+- Thanks [Stephan Beal][sgbeal] for the code!
 
 #### 0.0.1
 
@@ -80,3 +80,5 @@ Licence
 -------
 
 Released under the MIT Licence.
+
+[sgbeal]: https://github.com/sgbeal
