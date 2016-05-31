@@ -29,6 +29,4 @@ export function setupMockRouter(r : MockSrvRouter) {
     r.get("/ok", (req : any) : Promise<ResponseOptions> => {
         return res(200, "OK", 0);
     });
-
-    r.ready();
 }

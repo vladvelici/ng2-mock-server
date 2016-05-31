@@ -61,6 +61,12 @@ export class MockSrvRouter {
         this._resolve();
     }
 
+    /** Setup the router without explicitly calling ready(). */
+    setup(callback : (router : MockSrvRouter) => void) {
+        callback(this);
+        this.ready();
+    }
+
     serve(req : Request) : Promise<ResponseOptions> {
         return this._promise.then(() => {
             var i : number;

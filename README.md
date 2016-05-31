@@ -15,10 +15,7 @@ Getting started
 In your `bootstrap.ts` or `main.ts` file:
 
     import {Http} from '@angular/http';
-    import {MOCK_SERVER_PROVIDERS, MockSrvRouter} from 'ng2-mock-server/http';
-
-    // This is where you implement the mock back-end logic:
-    import {setupMockRouter} from './src/setupMockRouter';
+    import {MOCK_SERVER_PROVIDERS, MockSrvRouter, res} from 'ng2-mock-server/http';
 
     bootstrap([
         // your normal providers
@@ -27,23 +24,19 @@ In your `bootstrap.ts` or `main.ts` file:
     ], AppComponent).then(app => {
         let router = <MockSrvRouter> app.injector.get(MockSrvRouter);
 
-        setupMockRouter(router);
+        // Define and implement the routes.
+        router.setup(r => {
+            r.get("/hello", (req : Request, ...params : string) {
+               return res(200, "world");
+            });
+
+            r.get("/hello/:name", (req : Request, name : string) {
+                return res(200, name);
+            });
+        });
     });
 
-In `./src/setupMockRouter.ts`:
-
-    export function setupMockRouter(r : MockSrvRouter) {
-        r.get("/hello", (req : Request, ...params : string) {
-           return res(200, "world");
-        });
-
-        r.get("/hello/:name", (req : Request, name : string) {
-            return res(200, name);
-        });
-
-        // Important, tell the router you're done setting up routes.
-        r.ready();
-    }
+Note, you can also define the setup function somewhere else and just pass it to `router.setup()` to keep the main (or bootstrap) file short and clean. See the [example/main.ts](example/main.ts) and [example/setupMockRouter.ts](example/setupMockRouter.ts) files.
 
 Development and running the example project
 -------------------------------------------

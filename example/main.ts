@@ -72,5 +72,5 @@ bootstrap(AppComponent, [
 ]).then(app => {
     // Setup the mock server router after app is loaded
     let router = <MockSrvRouter> app.injector.get(MockSrvRouter);
-    setupMockRouter(router);
+    router.setup(setupMockRouter);
 });
