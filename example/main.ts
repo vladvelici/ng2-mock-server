@@ -18,6 +18,10 @@ import {PostsService, Post} from './posts.service';
 
         <a (click)="select('this-post-does-not-exist')" href="#">404 example</a>
 
+        <h5>Open the dev console to see the request lifecycle of these two:</h5>
+        <a (click)="failRequest()" href="#">fail request</a>
+        <a (click)="okRequest()" href="#">ok request</a>
+
         <div *ngIf="selectedPost">
             <h1>{{ selectedPost.title }}</h1>
             <p>{{ selectedPost.content }}</p>
@@ -49,6 +53,14 @@ class AppComponent {
             post => { this.selectedPost = post; this.status = "OK" },
             err => this.status = err
         );
+    }
+
+    failRequest() {
+        this._posts.failRequest();
+    }
+
+    okRequest() {
+        this._posts.okRequest();
     }
 }
 

@@ -12,17 +12,23 @@ export class MockSrvConnection implements Connection {
         private _baseResponseOptions : ResponseOptions,
         private _router : MockSrvRouter) {
 
-        this._router.serve(request).then((res : ResponseOptions) => {
-            res = this._baseResponseOptions.merge(res);
-            this.response.next(new Response(res));
-        });
+        this._router.serve(request).then(
+            (res : ResponseOptions) => {
+                res = this._baseResponseOptions.merge(res);
+                this.response.next(new Response(res));
+                this.response.complete();
+            },
+            (err : any) => {
+                this.response.error(err);
+            }
+        );
     }
 }
 
 /**
  * MockSrvBackend is an XHRBackend for angular2 that simulates a server. It's
  * purpose is enabling the implementation of front-ends when a back-end is not
- * (yet) available. 
+ * (yet) available.
  */
 @Injectable()
 export class MockSrvBackend implements ConnectionBackend {

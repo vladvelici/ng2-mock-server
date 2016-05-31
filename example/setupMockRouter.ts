@@ -1,4 +1,4 @@
-import {MockSrvRouter, json} from 'ng2-mock-server/http';
+import {MockSrvRouter, json, res} from 'ng2-mock-server/http';
 import {ResponseOptions} from '@angular/http';
 
 var posts = [
@@ -18,6 +18,16 @@ export function setupMockRouter(r : MockSrvRouter) {
             return json(404, {});
         }
         return json(200, post);
+    });
+
+    // Fail this request.
+    r.get("/fail", (req : any) : Promise<ResponseOptions> => {
+        return Promise.reject<ResponseOptions>("this request failed.");
+    });
+
+    // Send OK.
+    r.get("/ok", (req : any) : Promise<ResponseOptions> => {
+        return res(200, "OK", 0);
     });
 
     r.ready();
