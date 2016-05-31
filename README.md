@@ -53,6 +53,11 @@ For development and running the example project, clone this repo, make the desir
 Changelog
 ---------
 
+#### 0.0.3
+
+- Fixed #3, a bug where `onComplete` callbacks weren't called after a request.
+- Make `router.setup(r => {...})` the default way of setting up the routes to eliminate the call to `r.ready()`. This is backwards-compatible so if you're not using `router.setup()` and call `router.ready()`, everything will work just fine.
+
 #### 0.0.2
 
 - Updated code to Angular2 RC 1.
