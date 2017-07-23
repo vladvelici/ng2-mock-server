@@ -35,7 +35,7 @@ export class MockSrvBackend implements ConnectionBackend {
     constructor(private _baseResponseOptions: ResponseOptions, private _router: MockSrvRouter) {
     };
 
-    createConnection(request: Request): MockSrvConnection {
+    createConnection(request: Request): Connection {
         return new MockSrvConnection(request, this._baseResponseOptions, this._router);
     }
 }

@@ -1,3 +1,4 @@
+import { RouteInitializer } from './route-initializer';
 import { ReadyState, ResponseOptions, Request, Headers, RequestMethod } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
 import { pathtoRegexp } from './path-to-regexp';
@@ -47,43 +48,26 @@ class Route {
 export class MockSrvRouter {
 
     private _routes: Route[] = [];
-    private _promise: Promise<void>;
-    private _resolve: () => void;
 
-    constructor() {
-        this._promise = new Promise<void>((resolve, reject) => {
-            this._resolve = resolve;
-        });
-    }
-
-    /** Set the router as ready. */
-    ready() {
-        this._resolve();
-    }
-
-    /** Setup the router without explicitly calling ready(). */
-    setup(callback: (router: MockSrvRouter) => void) {
-        callback(this);
-        this.ready();
+    constructor(private initializer: RouteInitializer) {
+        initializer.initialize(this);
     }
 
     serve(req: Request): Promise<ResponseOptions> {
-        return this._promise.then(() => {
-            let i: number;
-            for (i = 0; i < this._routes.length; i++) {
-                if (this._routes[i].matches(req)) {
-                    const res = this._routes[i].serve(req);
-                    console.log('HTTP REQUEST: ', req, res);
-                    return res;
-                }
+        let i: number;
+        for (i = 0; i < this._routes.length; i++) {
+            if (this._routes[i].matches(req)) {
+                const res = Promise.resolve(this._routes[i].serve(req));
+                console.log('HTTP REQUEST: ', req, res);
+                return res;
             }
+        }
 
-            console.error('HTTP REQUEST NOT IMPLEMENTED', req);
+        console.error('HTTP REQUEST NOT IMPLEMENTED', req);
 
-            return Promise.resolve(new ResponseOptions({
-                status: 404,
-            }));
-        });
+        return Promise.resolve(new ResponseOptions({
+            status: 404,
+        }));
     }
 
     addRoute(method: RequestMethod, path: string | RegExp, callback: RouteCallback) {
