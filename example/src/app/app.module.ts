@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MockServerModule, MockSrvRouter, json, MockSrvBackend, RouteInitializer } from 'ng-mock-server';
-import { HttpModule, ResponseOptions, RequestMethod, XHRBackend, RequestOptions, Http, ConnectionBackend } from '@angular/http';
+import { MockServerModule, RouteInitializer } from 'ng-mock-server';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
