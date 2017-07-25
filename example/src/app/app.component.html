@@ -1,0 +1,16 @@
+<div> STATUS: {{ status }} </div>
+
+<ul>
+  <li *ngFor="let post of posts"><a (click)="select(post.url)" href="#">{{ post.title }}</a></li>
+</ul>
+
+<a (click)="select('this-post-does-not-exist')" href="#">404 example</a>
+
+<h5>Open the dev console to see the request lifecycle of these two:</h5>
+<a (click)="failRequest()" href="#">fail request</a>
+<a (click)="okRequest()" href="#">ok request</a>
+
+<div *ngIf="selectedPost">
+  <h1>{{ selectedPost.title }}</h1>
+  <p>{{ selectedPost.content }}</p>
+</div>
