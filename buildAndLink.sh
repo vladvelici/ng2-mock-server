@@ -1,0 +1,2 @@
+# Remove node_modules to prevent angular from discovering two different angular-versions. See https://github.com/angular/angular/issues/15763
+npm i && npm run build && rm -rf node_modules && cd dist && npm link && cd ..
