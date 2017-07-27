@@ -1,4 +1,4 @@
-import { RouteInitializer, MockSrvRouter, json, res } from 'ng-mock-server';
+import { RouteInitializer, MockSrvRouter, json, res } from 'ng2-mock-server';
 import { ResponseOptions } from '@angular/http';
 
 var posts = [

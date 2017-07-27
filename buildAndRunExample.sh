@@ -1,1 +1,1 @@
-./buildAndLink.sh && cd example && npm i && npm link ng-mock-server && npm start
+./buildAndLink.sh && cd example && npm i && npm link ng2-mock-server && npm start

@@ -1,6 +1,6 @@
 import { Http } from '@angular/http';
 import { Component, Injectable } from '@angular/core';
-import { MockSrvRouter } from 'ng-mock-server';
+import { MockSrvRouter } from 'ng2-mock-server';
 
 import { PostsService, Post } from './posts.service';
 

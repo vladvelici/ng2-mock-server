@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MockServerModule, RouteInitializer } from 'ng-mock-server';
+import { MockServerModule, RouteInitializer } from 'ng2-mock-server';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
