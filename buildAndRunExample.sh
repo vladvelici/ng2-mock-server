@@ -1,0 +1,1 @@
+./buildAndLink.sh && cd example && npm i && npm link ng2-mock-server && npm start

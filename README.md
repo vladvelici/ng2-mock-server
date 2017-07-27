@@ -1,31 +1,46 @@
 ng2-mock-server
 ===============
 
-An angular2 mock XHRBackend to ease front-end development when no real back-end is available.
+An angular2+ mock XHRBackend to ease front-end development when no real back-end is available.
 
 - No need to run a back-end on the dev machine.
 - Easy to show off a front-end from static servers like GitHub Pages, etc.
 - Easy to implement back-end functionality that runs in the browser. When the back-end is ready, just remove it and it's using the back-end with no changes in your application code.
+- Works with Angular 2 and Angular 4.
 
 Getting started
 ---------------
 
     npm install ng2-mock-server [--save | --save-dev]
 
-In your `bootstrap.ts` or `main.ts` file:
+In your main module file (other mandatory parts like Component-declarations omitted):
 
-    import {Http} from '@angular/http';
-    import {MOCK_SERVER_PROVIDERS, MockSrvRouter, res} from 'ng2-mock-server/http';
+    import { MockRouteInitializer } from './mock-route-initializer';
+    import { NgModule } from '@angular/core';
 
-    bootstrap([
-        // your normal providers
-        Http,
-        MOCK_SERVER_PROVIDERS,
-    ], AppComponent).then(app => {
-        let router = <MockSrvRouter> app.injector.get(MockSrvRouter);
+    import { MockServerModule, RouteInitializer } from 'ng2-mock-server';
+    import { HttpModule } from '@angular/http';
 
-        // Define and implement the routes.
-        router.setup(r => {
+    @NgModule({
+        imports: [
+            HttpModule,
+            MockServerModule
+        ],
+        providers: [
+            { provide: RouteInitializer, useClass: MockRouteInitializer }
+        ]
+    })
+    export class AppModule {
+    }
+
+[MockRouteInitializer](example/src/app/mock-route-initializer.ts) is where you define your mock-routes:
+
+    import { RouteInitializer, MockSrvRouter, json, res } from 'ng2-mock-server';
+    import { ResponseOptions } from '@angular/http';
+
+    export class MockRouteInitializer implements RouteInitializer {
+
+        initialize(r: MockSrvRouter): void {
             r.get("/hello", (req : Request, ...params : string) {
                return res(200, "world");
             });
@@ -33,25 +48,32 @@ In your `bootstrap.ts` or `main.ts` file:
             r.get("/hello/:name", (req : Request, name : string) {
                 return res(200, name);
             });
-        });
-    });
-
-Note, you can also define the setup function somewhere else and just pass it to `router.setup()` to keep the main (or bootstrap) file short and clean. See the [example/main.ts](example/main.ts) and [example/setupMockRouter.ts](example/setupMockRouter.ts) files.
+        }
+    }
 
 Development and running the example project
 -------------------------------------------
 
 For development and running the example project, clone this repo, make the desired changes and:
 
-    # 1. link the module:
-    npm link ng2-mock-server
+    # 1. build and link the module:
+    ./buildAndLink.sh
 
-    # 2. run the example with
+    # 2. use the linked module and start the example:
+    cd example
+    npm link ng2-mock-server
     npm start
+
+You can also use [buildAndRunExample.sh](buildAndRunExample.sh) to do all those steps at once
 
 
 Changelog
 ---------
+
+#### 0.0.4
+
+- ng2-mock-server now works with Angular 2 (Release Version) and 4
+- This update is contributed by [Dominik Schlosser][dmn1k]. Thank you for the pull request!
 
 #### 0.0.3
 
@@ -80,3 +102,4 @@ Licence
 Released under the MIT Licence.
 
 [sgbeal]: https://github.com/sgbeal
+[dmn1k]: https://github.com/dmn1k
